@@ -49,7 +49,7 @@ protos: $(protos_go)
 
 # Command binaries depend on it's own package and other non-command package go files
 bin/%:src/cmd/%/*.go $(src)
-	go build -ldflags "-X main.version=$(git_tag)" -o $(subst /cmd,,$@) ./$(subst bin/,src/cmd/,$@)
+	go build -ldflags "-X main.version=$(semver)" -o $(subst /cmd,,$@) ./$(subst bin/,src/cmd/,$@)
 
 # Generated protobufs go files depends on protos files
 %.pb.go:%.proto
