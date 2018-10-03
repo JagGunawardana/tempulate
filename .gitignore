@@ -14,3 +14,4 @@ bin/
 build/
 version
 go.sum
+vendor/
