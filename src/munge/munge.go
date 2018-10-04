@@ -13,8 +13,10 @@ import (
 func MungeFile(templateContent string, paramFiles []string) (outputFile string, err error) {
 	t, err := template.New("template").Funcs(
 		template.FuncMap{
-			"envdef": getEnvDefault,
-			"value":  createValue(paramFiles),
+			"envdef":     getEnvDefault,
+			"value":      createValue(paramFiles),
+			"join":       joinString,
+			"join_comma": joinStringComma,
 		},
 	).Parse(templateContent)
 	if err != nil {
