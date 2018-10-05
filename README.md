@@ -145,7 +145,7 @@ The function MungeFile will allow you to pass a template (as string) and YAML/JS
 ### Template functions
 
 |Function   | Description  | Example  |
-|---|---|---|---|---|
+|---|---|---|
 | envdef  | Get value of environment variable with a default if not set | {{ envdef "PATH" "no path!" }}  |
 | value  | Get a value from one of the parameter files using a JSON path query  | {{ value "$.mylist[2]" }} |
 | join  | Join list of strings with a delimiter  | {{ join (value "$.mylist") "|" }} |
