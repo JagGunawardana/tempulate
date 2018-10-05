@@ -102,6 +102,26 @@ users:
       pgp_key: another_key_base_user
 ````
 
+This could also be done with JSON if you'd prefer e.g:
+
+```
+{
+  "account": {
+    "min_password_length": 12
+  },
+  "users": {
+    "my.user": {
+      "user_name": "lorcan_user",
+      "pgp_key": "key_base_user"
+    },
+    "aother.user": {
+      "user_name": "another_user",
+      "pgp_key": "another_key_base_user"
+    }
+  }
+}
+```
+
 Finally to test this out, run:
 
 ```
@@ -119,3 +139,5 @@ The resulting file can be 'applied' using Terraform.
 ### Package
 
 This functionality can also be used from within your own code using the tempulate/munge package.
+
+The function MungeFile will allow you to pass a template (as string) and YAML/JSON parameter files. See the munch_test.go file for examples.
