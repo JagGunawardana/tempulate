@@ -141,3 +141,12 @@ The resulting file can be 'applied' using Terraform.
 This functionality can also be used from within your own code using the tempulate/munge package.
 
 The function MungeFile will allow you to pass a template (as string) and YAML/JSON parameter files. See the munch_test.go file for examples.
+
+### Template functions
+
+|Function   | Description  | Example  |
+|---|---|---|---|---|
+| envdef  | Get value of environment variable with a default if not set | {{ envdef "PATH" "no path!" }}  |
+| value  | Get a value from one of the parameter files using a JSON path query  | {{ value "$.mylist[2]" }} |
+| join  | Join list of strings with a delimiter  | {{ join (value "$.mylist") "|" }} |
+| join_comma | Join list of strings with a comma | {{ join_comma (value "$.mylist") }} |
