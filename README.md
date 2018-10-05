@@ -148,5 +148,5 @@ The function MungeFile will allow you to pass a template (as string) and YAML/JS
 |---|---|---|
 | envdef  | Get value of environment variable with a default if not set | {{ envdef "PATH" "no path!" }}  |
 | value  | Get a value from one of the parameter files using a JSON path query  | {{ value "$.mylist[2]" }} |
-| join  | Join list of strings with a delimiter  | {{ join (value "$.mylist") "|" }} |
+| join  | Join list of strings with a delimiter  | {{ join (value "$.mylist") ";" }} |
 | join_comma | Join list of strings with a comma | {{ join_comma (value "$.mylist") }} |
