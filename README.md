@@ -114,4 +114,8 @@ This will output to STDOUT, to output to a file for running with Terraform, use:
 bin/tempulate -t account.tf.tmpl -p account.yaml -o account.tf
 ```
 
+The resulting file can be 'applied' using Terraform.
+
 ### Package
+
+This functionality can also be used from within your own code using the tempulate/munge package.
