@@ -15,6 +15,6 @@ var versionCmd = &cobra.Command{
 	Short: "Print version number",
 	Long:  `Standard semver of this binary`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Printf("tempulate version: %s\n", version)
+		fmt.Printf("tempulate version %s\n", version)
 	},
 }

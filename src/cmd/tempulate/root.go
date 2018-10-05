@@ -85,6 +85,7 @@ func init() {
 	rootCmd.Flags().StringVarP(&outputFile, "output", "o", "", "Templated output file")
 	rootCmd.Flags().BoolVarP(&quiet, "quiet", "q", false, "Turn on quiet mode (just output file - no other info)")
 }
+
 func Execute() {
 
 	if err := rootCmd.Execute(); err != nil {

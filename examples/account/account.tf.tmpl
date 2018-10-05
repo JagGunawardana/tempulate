@@ -1,0 +1,49 @@
+resource "aws_iam_group" "devops" {
+  name = "devops"
+  path = "/devops/"
+}
+
+resource "aws_iam_group_policy_attachment" "devops_policy_full_access" {
+  group      = "${aws_iam_group.devops.name}"
+  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
+}
+
+
+{{ range $user := value "$.users" }}
+resource "aws_iam_user" "{{ $user.user_name }}" {
+        name = "{{ $user.user_name }}"
+}
+
+resource "aws_iam_user_login_profile" "{{ $user.user_name }}" {
+         user = "${aws_iam_user.{{ $user.user_name }}.name}"
+         pgp_key = "{{ $user.pgp_key }}"
+}
+
+resource "aws_iam_access_key" "{{ $user.user_name }}" {
+        user = "${aws_iam_user.{{ $user.user_name }}.name}"
+}
+
+resource "aws_iam_user_group_membership" "{{ $user.user_name }}" {
+  user = "${aws_iam_user.{{ $user.user_name }}.name}"
+  groups = [
+    "${aws_iam_group.devops.name}",
+  ]
+}
+
+output "{{ $user.user_name }}_name" {
+       value = "${aws_iam_user.{{ $user.user_name }}.name}"
+}
+
+output "{{ $user.user_name }}_arn" {
+       value = "${aws_iam_user.{{ $user.user_name }}.arn}"
+}
+
+output "{{ $user.user_name }}_key_fingerprint" {
+       value = "${aws_iam_user_login_profile.{{ $user.user_name }}.key_fingerprint}"
+}
+
+output "{{ $user.user_name }}_encrypted_password" {
+       value = "${aws_iam_user_login_profile.{{ $user.user_name }}.encrypted_password}"
+}
+
+{{ end }}
